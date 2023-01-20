@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public class Peasant extends BaseHero{
     int supply;
-    public Peasant(String name, int attack, int defence, int[] damage, int health, int speed, int supply) {
-        super(name, attack, defence, damage, health, speed);
+    public Peasant(String name, int attack, int defence, int[] damage, int maxHealth, int speed, int supply) {
+        super(name, attack, defence, damage, maxHealth, speed);
         this.supply = supply;
     }
 
@@ -15,4 +17,8 @@ public class Peasant extends BaseHero{
         return super.toString() + ", Supply";
     }
 
+    @Override
+    public void step(ArrayList<BaseHero> heroList) {
+
+    }
 }
