@@ -1,5 +1,8 @@
+import Units.*;
+
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -29,11 +32,6 @@ public class Main {
                 heroesOne.add(new Mage(names[randNameNum]));
             }
         }
-        heroesOne.forEach(n -> System.out.print(n.getInfo() + ", "));
-        heroesOne.forEach(n -> n.step(heroesOne));
-        heroesOne.forEach(n -> System.out.print(n.getInfo() + ", "));
-
-        System.out.println("\n\n***\n");
 
         for (int i = 0; i < 10; i++) {
             int randNum = rand.nextInt(4);
@@ -48,9 +46,23 @@ public class Main {
                 heroesTwo.add(new Monk(names[randNameNum]));
             }
         }
-        heroesTwo.forEach(n -> System.out.print(n.getInfo() + ", "));
-        heroesOne.forEach(n -> n.step(heroesTwo));
-        heroesTwo.forEach(n -> System.out.print(n.getInfo() + ", "));
+
+        ArrayList<BaseHero> sortedArmyOne = sortArmy(heroesOne);
+        ArrayList<BaseHero> sortedArmyTwo = sortArmy(heroesTwo);
+
+        Scanner scan = new Scanner(System.in);
+        boolean startApp = true;
+        while (startApp) {
+            if (scan.nextLine().contains("exit")) {
+                startApp = false;
+            } else {
+                sortedArmyOne.forEach(n -> System.out.print(n.getInfo() + ", "));
+                sortedArmyOne.forEach(n -> n.step(sortedArmyOne));
+
+                System.out.println("\n***");
+
+            }
+        }
     }
 
     public static void getHeroes(ArrayList<BaseHero> heroes, String requiredClass) {
@@ -65,4 +77,27 @@ public class Main {
             System.out.printf("Персонажей типа %s не нашлось.\n", requiredClass);
         }
     }
+
+    public static ArrayList<BaseHero> sortArmy(ArrayList<BaseHero> heroes) {
+        ArrayList<BaseHero> resArray = new ArrayList<>();
+        for (BaseHero hero : heroes) {
+            if (hero.getInfo().contains("Monk") || hero.getInfo().contains("Mage")) {
+                resArray.add(hero);
+            }
+        }
+        for (BaseHero hero : heroes) {
+            if (!(hero.getInfo().contains("Peasant") || hero.getInfo().contains("Monk") || hero.getInfo().contains("Mage"))) {
+                resArray.add(hero);
+            }
+        }
+        for (BaseHero hero : heroes) {
+            if (hero.getInfo().contains("Peasant")) {
+                resArray.add(hero);
+            }
+        }
+        return resArray;
+    }
+
 }
+
+

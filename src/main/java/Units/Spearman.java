@@ -1,3 +1,5 @@
+package Units;
+
 public class Spearman extends Soldier {
 
     public Spearman(String name) {
