@@ -29,10 +29,10 @@ public class Main {
         int y = 1;
         for (int i = 0; i < GANG_SIZE; i++) {
             switch (new Random().nextInt(4)) {
-                case 0: whiteSide.add(new Peasant(whiteSide, x, y++)); break;
-                case 1: whiteSide.add(new Rogue(whiteSide, x, y++)); break;
-                case 2: whiteSide.add(new Sniper(whiteSide, x, y++)); break;
-                default: whiteSide.add(new Monk(whiteSide, x, y++)); break;
+                case 0: whiteSide.add(new Peasant(whiteSide, x, y++, GANG_SIZE)); break;
+                case 1: whiteSide.add(new Rogue(whiteSide, x, y++, GANG_SIZE)); break;
+                case 2: whiteSide.add(new Sniper(whiteSide, x, y++, GANG_SIZE)); break;
+                default: whiteSide.add(new Monk(whiteSide, x, y++, GANG_SIZE)); break;
             }
         }
 
@@ -41,10 +41,10 @@ public class Main {
         for (int i = 0; i < GANG_SIZE; i++) {
 
             switch (new Random().nextInt(4)) {
-                case 0: darkSide.add(new Peasant(darkSide, x, y++)); break;
-                case 1: darkSide.add(new Spearman(darkSide, x, y++)); break;
-                case 2: darkSide.add(new Crossbowman(darkSide, x, y++)); break;
-                default: darkSide.add(new Mage(darkSide, x, y++)); break;
+                case 0: darkSide.add(new Peasant(darkSide, x, y++, GANG_SIZE)); break;
+                case 1: darkSide.add(new Spearman(darkSide, x, y++, GANG_SIZE)); break;
+                case 2: darkSide.add(new Crossbowman(darkSide, x, y++, GANG_SIZE)); break;
+                default: darkSide.add(new Mage(darkSide, x, y++, GANG_SIZE)); break;
             }
         }
     }
