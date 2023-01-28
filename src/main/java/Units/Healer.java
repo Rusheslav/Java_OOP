@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Healer extends BaseHero {
     Integer mana;
-    public Healer (String name, int attack, int defence, int[] damage, int maxHealth, int speed, int mana) {
-        super(name, attack, defence, damage, maxHealth, speed);
+    public Healer (ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int mana, int x, int y) {
+        super(name, attack, defence, damage, maxHealth, speed, x, y);
         this.mana = mana;
     }
 

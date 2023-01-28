@@ -3,8 +3,8 @@ package Units;
 import java.util.ArrayList;
 
 public class Soldier extends BaseHero {
-    public Soldier(String name, int attack, int defence, int[] damage, int maxHealth, int speed) {
-        super(name, attack, defence, damage, maxHealth, speed);
+    public Soldier(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y) {
+        super(name, attack, defence, damage, maxHealth, speed, x, y);
     }
 
     @Override

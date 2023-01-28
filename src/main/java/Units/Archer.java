@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Archer extends BaseHero {
     Integer shoots;
-    public Archer(String name, int attack, int defence, int[] damage, int maxHealth, int speed, int shoots) {
-        super(name, attack, defence, damage, maxHealth, speed);
+    public Archer(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int shoots, int x, int y) {
+        super(name, attack, defence, damage, maxHealth, speed, x, y);
         this.shoots = shoots;
     }
 
@@ -32,6 +32,7 @@ public class Archer extends BaseHero {
 
     @Override
     public String getInfo() {
-        return this.getClass().getName().split("\\.")[1] + " H" + String.valueOf(health * 100/maxHealth) + "%" + " Sh" + shoots;
+        String outStr = String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥%d%%\t☠%d\t➵%d", attack,defence,health * 100/maxHealth,(damage[0] + damage[1])/2,shoots);
+        return outStr;
     }
 }
