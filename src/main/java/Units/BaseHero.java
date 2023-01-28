@@ -2,27 +2,26 @@ package Units;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 
 public abstract class BaseHero implements BaseInterface {
-    ArrayList<BaseHero> name;
-    int attack, defence, maxHealth, speed, health, supply;
-    int[] damage;
-
-    Random rand = new Random();
+    protected ArrayList<BaseHero> name;
+    protected int attack, defence, maxHealth, speed, supply, gangSize;
+    public float health;
+    protected int[] damage;
     protected Vector2 position;
 
 
-    public BaseHero(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y) {
+    public BaseHero(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y, int gangSize) {
         this.name = name;
         this.attack = attack;
         this.defence = defence;
         this.damage = damage;
         this.maxHealth = maxHealth;
-        this.health = maxHealth - rand.nextInt(maxHealth);
+        this.health = maxHealth;
         this.speed = speed;
         this.supply = 0;
         this.position = new Vector2(x, y);
+        this.gangSize = gangSize;
     }
 
 
@@ -33,7 +32,7 @@ public abstract class BaseHero implements BaseInterface {
 
     @Override
     public String getInfo() {
-        String outStr = String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥%d%%\t☠%d", attack,defence,health * 100/maxHealth,(damage[0] + damage[1])/2);
+        String outStr = String.format("⚔ %-3d\t\uD83D\uDEE1 %-3d\t♥%-3d%%\t☠%-3d\t    ", attack,defence,(int) health * 100/maxHealth,(damage[0] + damage[1])/2);
         return outStr;
     }
 
