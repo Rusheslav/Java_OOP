@@ -3,12 +3,12 @@ package Units;
 import java.util.ArrayList;
 
 public class Peasant extends BaseHero{
-    public Peasant(String name, int attack, int defence, int[] damage, int maxHealth, int speed) {
-        super(name, attack, defence, damage, maxHealth, speed);
+    public Peasant(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y) {
+        super(name, attack, defence, damage, maxHealth, speed, x, y);
     }
 
-    public Peasant(String name) {
-        super(name, 1, 1, new int[] {1, 1}, 1, 3);
+    public Peasant(ArrayList<BaseHero> name, int x, int y) {
+        super(name, 1, 1, new int[] {1, 1}, 1, 3, x, y);
         this.supply = 1;
     }
 
@@ -30,6 +30,7 @@ public class Peasant extends BaseHero{
 
     @Override
     public String getInfo() {
-        return this.getClass().getName().split("\\.")[1] + " H" + String.valueOf(health * 100/maxHealth) + "%" + " Sup" + this.supply;
+        String outStr = String.format("⚔ %d\t\uD83D\uDEE1 %d\t♥%d%%\t☠%d\t✊%d", attack,defence,health * 100/maxHealth,(damage[0] + damage[1])/2,supply);
+        return outStr;
     }
 }

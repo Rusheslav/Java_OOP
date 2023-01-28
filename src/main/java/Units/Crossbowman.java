@@ -1,8 +1,10 @@
 package Units;
 
+import java.util.ArrayList;
+
 public class Crossbowman extends Archer {
 
-    public Crossbowman(String name) {
-        super(name, 6, 3, new int[] {2, 3}, 10,4, 16);
+    public Crossbowman(ArrayList<BaseHero> name, int x, int y) {
+        super(name, 6, 3, new int[] {2, 3}, 10,4, 16, x, y);
     }
 }
