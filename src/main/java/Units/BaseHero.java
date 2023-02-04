@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class BaseHero implements BaseInterface {
-    protected ArrayList<BaseHero> name;
-    protected int attack, defence, maxHealth, speed, supply, gangSize;
+    public ArrayList<BaseHero> name;
+    protected int attack, defence, maxHealth, supply, gangSize;
     public float health;
+    public int speed;
     protected int[] damage;
     protected Vector2 position;
-    protected String type;
+    public String type;
 
 
     public BaseHero(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y, int gangSize) {

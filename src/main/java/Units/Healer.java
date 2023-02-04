@@ -1,6 +1,7 @@
 package Units;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Healer extends BaseHero {
     Integer mana;
@@ -16,23 +17,64 @@ public class Healer extends BaseHero {
 
     @Override
     public void step(ArrayList<BaseHero> heroList) {
-        double minHealth = 1.0;
-        int minHealthInd = 0;
-        for (int i = 0; i < heroList.size(); i++) {
-            BaseHero hero = heroList.get(i);
-            double healthShare = (double) hero.health / (double) hero.maxHealth;
-            if (healthShare < minHealth && hero.health > 0) {
-                minHealth = healthShare;
-                minHealthInd = i;
-            }
-        }
+        if (health > 0) {
+            if (mana == 1) {
+                double minHealth = 1.0;
+                int minHealthInd = 0;
+                for (int i = 0; i < name.size(); i++) {
+                    BaseHero hero = name.get(i);
+                    double healthShare = (double) hero.health / (double) hero.maxHealth;
+                    if (healthShare < minHealth) {
+                        minHealth = healthShare;
+                        minHealthInd = i;
+                    }
+                }
 
-        BaseHero weakHero = heroList.get(minHealthInd);
-        float wound = (float) weakHero.maxHealth - weakHero.health;
-        if (wound <= -this.damage[0]) {
-            weakHero.health = weakHero.maxHealth;
-        } else {
-            weakHero.health -= this.damage[0];
+                BaseHero weakHero = name.get(minHealthInd);
+                if (weakHero.health > 0) {
+                    float wound = (float) weakHero.maxHealth - weakHero.health;
+                    if (wound <= -this.damage[0]) {
+                        weakHero.health = weakHero.maxHealth;
+                    } else {
+                        weakHero.health -= this.damage[0];
+                    }
+                } else {
+                    if (type.equals("Monk")) {
+                        switch (new Random().nextInt(4)) {
+                            case 0:
+                                name.set(minHealthInd, new Peasant(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            case 1:
+                                name.set(minHealthInd, new Rogue(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            case 2:
+                                name.set(minHealthInd, new Sniper(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            default:
+                                name.set(minHealthInd, new Monk(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                        }
+                    } else {
+                        switch (new Random().nextInt(4)) {
+                            case 0:
+                                name.set(minHealthInd, new Peasant(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            case 1:
+                                name.set(minHealthInd, new Spearman(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            case 2:
+                                name.set(minHealthInd, new Crossbowman(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                            default:
+                                name.set(minHealthInd, new Mage(name, weakHero.getPosition().x, weakHero.getPosition().y, gangSize));
+                                break;
+                        }
+                    }
+                    mana = 0;
+                }
+            } else {
+                mana = 1;
+            }
         }
     }
 }
