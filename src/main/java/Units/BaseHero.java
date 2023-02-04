@@ -9,6 +9,7 @@ public abstract class BaseHero implements BaseInterface {
     public float health;
     protected int[] damage;
     protected Vector2 position;
+    protected String type;
 
 
     public BaseHero(ArrayList<BaseHero> name, int attack, int defence, int[] damage, int maxHealth, int speed, int x, int y, int gangSize) {
@@ -22,6 +23,7 @@ public abstract class BaseHero implements BaseInterface {
         this.supply = 0;
         this.position = new Vector2(x, y);
         this.gangSize = gangSize;
+        this.type = this.getClass().getName().split("\\.")[1];
     }
 
 
@@ -32,7 +34,7 @@ public abstract class BaseHero implements BaseInterface {
 
     @Override
     public String getInfo() {
-        String outStr = String.format("⚔ %-3d\t\uD83D\uDEE1 %-3d\t♥%-3d%%\t☠%-3d\t    ", attack,defence,(int) health * 100/maxHealth,(damage[0] + damage[1])/2);
+        String outStr = String.format("\t%-3s\t⚔ %-3d\t\uD83D\uDEE1 %-3d\t♥%-3d%%\t☠%-3d\t        ", type, attack,defence,(int) health * 100/maxHealth,(damage[0] + damage[1])/2);
         return outStr;
     }
 
