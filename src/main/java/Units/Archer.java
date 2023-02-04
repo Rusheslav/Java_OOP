@@ -65,7 +65,7 @@ public class Archer extends BaseHero {
 
     @Override
     public String getInfo() {
-        String outStr = String.format("⚔ %-3d\t\uD83D\uDEE1 %-3d\t♥%-3d%%\t☠%-3d\t➵%-3d", attack,defence,(int) health * 100/maxHealth,(damage[0] + damage[1])/2,shoots);
+        String outStr = String.format("\t%-3s\t⚔ %-3d\t\uD83D\uDEE1 %-3d\t♥%-3d%%\t☠%-3d\t➵%-3d\t", type, attack,defence,(int) health * 100/maxHealth,(damage[0] + damage[1])/2,shoots);
         return outStr;
     }
 }
